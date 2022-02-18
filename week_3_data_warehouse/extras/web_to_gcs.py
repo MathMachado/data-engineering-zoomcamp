@@ -34,9 +34,9 @@ def upload_to_gcs(bucket, object_name, local_file):
 
 def web_to_gcs(year, service):
     for i in range(13):
-        month = '0'+str(i+1)
+        month = f'0{str(i+1)}'
         month = month[-2:]
-        file_name = service + '_tripdata_' + year + '-' + month + '.csv'
+        file_name = f'{service}_tripdata_{year}-{month}.csv'
         request_url = init_url + file_name
         r = requests.get(request_url)
         pd.DataFrame(io.StringIO(r.text)).to_csv(file_name)
